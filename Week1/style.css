@@ -1,8 +1,8 @@
-body {
+body{
     background-color: lightgray;
 }
 
-.login-form {
+.login-form{
     width: 300px;
     margin: 150px auto;
     background-color: white;
@@ -10,12 +10,12 @@ body {
     text-align: center;
 }
 
-input {
+input{
     width: 200px;
     height: 20px;
 }
 
-button {
+button{
     width: 100px;
     height: 20px;
 }
