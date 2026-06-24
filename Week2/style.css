@@ -1,1 +1,10 @@
-
+input{
+    padding: 5px;
+}
+button{
+    padding: 10px;
+    margin-left: 10px;
+}
+li{
+    margin-top: 10px;
+}
