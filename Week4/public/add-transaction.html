@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Add Transaction</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="add-transaction.html">Add Transaction</a>
+        <a href="history.html">History</a>
+        <a href="reports.html">Reports</a>
+        <a href="assistant.html">AI Assistant</a>
+        <a href="settings.html">Settings</a>
+    </nav>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h1>Add Transaction</h1>
+
+            <form id="transactionForm">
+
+                <label>Description</label>
+                <input type="text" id="description" required>
+
+                <label>Amount</label>
+                <input type="number" id="amount" required>
+
+                <label>Type</label>
+                <select id="type">
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+
+                <label>Category</label>
+                <input type="text" id="category" required>
+
+                <label>Date</label>
+                <input type="date" id="date" required>
+
+                <button type="submit">Add Transaction</button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <script src="js/storage.js"></script>
+
+    <script>
+
+        document.getElementById("transactionForm").addEventListener("submit", function(event){
+
+            event.preventDefault();
+
+            let transaction = {
+
+                description: document.getElementById("description").value,
+
+                amount: Number(document.getElementById("amount").value),
+
+                type: document.getElementById("type").value,
+
+                category: document.getElementById("category").value,
+
+                date: document.getElementById("date").value
+
+            };
+
+            addTransaction(transaction);
+
+            alert("Transaction Added Successfully!");
+
+            document.getElementById("transactionForm").reset();
+
+        });
+
+    </script>
+
+</body>
+
+</html>
