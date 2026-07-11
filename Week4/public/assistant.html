@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>AI Assistant</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="add-transaction.html">Add Transaction</a>
+        <a href="history.html">History</a>
+        <a href="reports.html">Reports</a>
+        <a href="assistant.html">AI Assistant</a>
+        <a href="settings.html">Settings</a>
+    </nav>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h1>AI Assistant</h1>
+
+            <p>Ask any finance related question.</p>
+
+            <br>
+
+            <textarea id="question" rows="5"></textarea>
+
+            <br><br>
+
+            <button onclick="sendQuestion()">
+                Send
+            </button>
+
+            <br><br>
+
+            <h3>AI Response</h3>
+
+            <p id="reply"></p>
+
+        </div>
+
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/ai.js"></script>
+
+    <script>
+
+        async function sendQuestion(){
+
+            let question = document.getElementById("question").value;
+
+            if(question == ""){
+
+                alert("Please enter a question.");
+
+                return;
+
+            }
+
+            let answer = await askAI(question);
+
+            document.getElementById("reply").innerHTML = answer;
+
+        }
+
+    </script>
+
+</body>
+
+</html>
