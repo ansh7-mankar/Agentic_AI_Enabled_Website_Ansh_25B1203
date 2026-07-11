@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Settings</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="add-transaction.html">Add Transaction</a>
+        <a href="history.html">History</a>
+        <a href="reports.html">Reports</a>
+        <a href="assistant.html">AI Assistant</a>
+        <a href="settings.html">Settings</a>
+    </nav>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h1>Settings</h1>
+
+            <label>Monthly Budget</label>
+
+            <input type="number" id="budget">
+
+            <br><br>
+
+            <label>
+
+                <input type="checkbox" id="darkMode">
+
+                Dark Mode
+
+            </label>
+
+            <br><br>
+
+            <button onclick="saveMySettings()">
+                Save Settings
+            </button>
+
+            <br><br>
+
+            <button onclick="resetData()">
+                Reset All Transactions
+            </button>
+
+        </div>
+
+    </div>
+
+    <script src="js/storage.js"></script>
+
+    <script>
+
+        let settings = getSettings();
+
+        document.getElementById("budget").value = settings.budget;
+
+        document.getElementById("darkMode").checked = settings.darkMode;
+
+        if(settings.darkMode){
+
+            document.body.classList.add("dark");
+
+        }
+
+        function saveMySettings(){
+
+            let settings = {
+
+                budget: Number(document.getElementById("budget").value),
+
+                currency: "₹",
+
+                darkMode: document.getElementById("darkMode").checked
+
+            };
+
+            saveSettings(settings);
+
+            if(settings.darkMode){
+
+                document.body.classList.add("dark");
+
+            }
+            else{
+
+                document.body.classList.remove("dark");
+
+            }
+
+            alert("Settings Saved.");
+
+        }
+
+        function resetData(){
+
+            let answer = confirm("Do you want to delete all transactions?");
+
+            if(answer){
+
+                clearTransactions();
+
+                alert("All transactions deleted.");
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
