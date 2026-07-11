@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Reports</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="add-transaction.html">Add Transaction</a>
+        <a href="history.html">History</a>
+        <a href="reports.html">Reports</a>
+        <a href="assistant.html">AI Assistant</a>
+        <a href="settings.html">Settings</a>
+    </nav>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h1>Reports</h1>
+
+            <canvas id="myChart"></canvas>
+
+            <br>
+
+            <button onclick="getInsights()">
+                Get AI Spending Insights
+            </button>
+
+            <br><br>
+
+            <p id="answer"></p>
+
+        </div>
+
+    </div>
+
+    <script src="js/storage.js"></script>
+
+    <script src="js/ai.js"></script>
+
+    <script>
+
+        let totals = getCategoryTotals();
+
+        new Chart(document.getElementById("myChart"), {
+
+            type: "pie",
+
+            data: {
+
+                labels: Object.keys(totals),
+
+                datasets: [{
+
+                    data: Object.values(totals),
+
+                    backgroundColor: [
+                        "red",
+                        "blue",
+                        "green",
+                        "orange",
+                        "purple"
+                    ]
+
+                }]
+
+            }
+
+        });
+
+        async function getInsights(){
+
+            let balance = getBalance();
+
+            let totals = getCategoryTotals();
+
+            let prompt =
+            "My current balance is ₹" + balance +
+            ". My spending by category is " +
+            JSON.stringify(totals) +
+            ". Give me 3 simple tips to improve my spending.";
+
+            let reply = await askAI(prompt);
+
+            document.getElementById("answer").innerHTML = reply;
+
+        }
+
+    </script>
+
+</body>
+
+</html>
