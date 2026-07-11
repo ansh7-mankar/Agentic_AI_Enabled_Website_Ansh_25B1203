@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="add-transaction.html">Add Transaction</a>
+        <a href="history.html">History</a>
+        <a href="reports.html">Reports</a>
+        <a href="assistant.html">AI Assistant</a>
+        <a href="settings.html">Settings</a>
+    </nav>
+
+    <div class="container">
+
+        <h1>Dashboard</h1>
+
+        <div class="summary">
+
+            <div class="card">
+                <h3>Current Balance</h3>
+                <p id="balance">₹0</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Income</h3>
+                <p id="income">₹0</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Expenses</h3>
+                <p id="expenses">₹0</p>
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <h2>Recent Transactions</h2>
+
+            <table>
+
+                <tr>
+                    <th>Description</th>
+                    <th>Amount</th>
+                    <th>Type</th>
+                </tr>
+
+                <tbody id="recentTransactions">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <script src="js/storage.js"></script>
+
+    <script>
+
+        document.getElementById("balance").innerHTML = "₹" + getBalance();
+
+        document.getElementById("income").innerHTML = "₹" + getTotalIncome();
+
+        document.getElementById("expenses").innerHTML = "₹" + getTotalExpenses();
+
+        let transactions = getTransactions();
+
+        let table = document.getElementById("recentTransactions");
+
+        let start = Math.max(0, transactions.length - 5);
+
+        for(let i = transactions.length - 1; i >= start; i--){
+
+            let row = table.insertRow();
+
+            row.insertCell(0).innerHTML = transactions[i].description;
+
+            row.insertCell(1).innerHTML = "₹" + transactions[i].amount;
+
+            row.insertCell(2).innerHTML = transactions[i].type;
+
+        }
+
+    </script>
+
+</body>
+
+</html>
